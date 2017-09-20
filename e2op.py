@@ -30,11 +30,11 @@ def main():
         print("Exporting {}".format(enpass_login['title']))
         for field_name in ['title', 'url', 'username', 'password', 'note']:
             # Check for common alernate capitalizations
-            if not enpass_login.get(field_name):
-                if enpass_login.get(field_name.title(), None):
-                    field_name = field_name.title()
-                elif enpass_login.get(field_name.capitalize(), None):
+            if not enpass_login.get(field_name, None):
+                if enpass_login.get(field_name.capitalize(), None):
                     field_name = field_name.capitalize()
+                elif enpass_login.get(field_name.upper(), None):
+                    field_name = field_name.upper()
             print("    - {}".format(field_name))
             onepassword_login.append(enpass_login.pop(field_name, ""))
         for field_name, field_value in enpass_login.items():
